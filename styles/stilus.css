@@ -1,0 +1,95 @@
+
+header {
+    border-radius: 10px;    
+    background-color: beige;
+    background-image: linear-gradient(to bottom left, white, lightgrey);
+    padding: 10px;
+    margin: 10px;
+}
+
+header img {
+    float: left;
+    margin: 20px 10px 0px 10px;
+}
+
+div#wrapper {
+    margin: 10px; 
+}
+
+aside {
+    display: table-cell;
+    vertical-align: top;
+}
+
+nav {
+    margin: 0px 10px 0px 0px;
+    top: 0px;
+    border-radius: 10px;
+    background-color: #ff7b00;
+    background-image: linear-gradient(to bottom left, white, lightgrey);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2123b6;
+}
+
+nav ul li {
+    padding: 0px 15px;
+    float: left;
+}
+
+nav ul li.active {
+    border: 2px solid white;
+    border: 2px s;
+}
+
+nav ul a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+div#content {
+    display: table;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background-color: #fff599;
+    background-image: linear-gradient(to bottom right, white, lightgrey);
+    padding: 15px;
+}
+
+div#content img{
+    float: left;
+    width: 20em;
+    height: auto;
+    margin: 15 15 15px 15px;
+    padding: 10px;
+    border: 0px solid rgb(255, 136, 0);
+}
+div#content h1 {
+    text-align: center;
+}
+
+footer {
+    border-radius: 15px;
+    margin: 10px;
+    padding: 5px 10px;
+    background-color: #2123b6;
+    color:white;
+}
+#left, #middle, #right {display: inline-block;  zoom: 1; vertical-align: top; font-size: 12px;}
+div#left {width: 50%;  float: left;}
+#middle {width: 50%; float: none; }
+#right {width: 50%; float: right;}
+kep div{width: 100%; }
+
+#felsologo{
+    width:130px;
+}
