@@ -19,7 +19,7 @@
 		<div  >
 			<h1><?= $fejlec['cim'] ?></h1>		<?php if (isset($fejlec['motto'])) { ?><h2>
 			<?= $fejlec['motto'] ?></h2><?php } ?> 
-			<?php if(isset($_SESSION['login'])) { ?>Bejlentkezve: <strong><?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" ?></strong><?php } ?>
+			<?php if(isset($_SESSION['login'])) { ?>Bejlentkezve: <strong><?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" . ($_SESSION['admin'] == 0 ? "   ->Felhasználó" : "   ->Admin") ?></strong><?php } ?>
 			
 		</div>
 	
@@ -28,7 +28,7 @@
             <nav>
                 <ul>
 					<?php foreach ($oldalak as $url => $oldal) { ?>
-						<?php if(! isset($_SESSION['login']) && $oldal['menun'][0] || isset($_SESSION['login']) && $oldal['menun'][1]) { ?>
+						<?php if(! isset($_SESSION['login']) && $oldal['menun'][0] || isset($_SESSION['login']) && $oldal['menun'][1] && $_SESSION['admin'] == 0 ||  isset($_SESSION['login']) && $oldal['menun'][2] && $_SESSION['admin'] == 1 ) { ?>
 							<li<?= (($oldal == $keres) ? ' class="active"' : '') ?>>
 							<a href="<?= ($url == '/') ? '.' : ('?oldal=' . $url) ?>">
 							<?= $oldal['szoveg'] ?></a>

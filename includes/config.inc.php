@@ -14,14 +14,16 @@ $lablec = array(
     'copyright' => 'Copyright '.date("Y").'.',
     'ceg' => 'Forgalomfigyelő'
 );
-
+// megjelenites magyarazat: (vendeg, bejelentkezett felhasznalo, admin)
 $oldalak = array(
-	'/' => array('fajl' => 'cimlap', 'szoveg' => 'Címlap', 'menun' => array(1,1)),
-	'bemutatkozas' => array('fajl' => 'bemutatkozas', 'szoveg' => 'Bemutatkozás', 'menun' => array(1,1)),
-    'belepes' => array('fajl' => 'belepes', 'szoveg' => 'Belépés', 'menun' => array(1,0)),
-    'kilepes' => array('fajl' => 'kilepes', 'szoveg' => 'Kilépés', 'menun' => array(0,1)),
-    'belep' => array('fajl' => 'belep', 'szoveg' => '', 'menun' => array(0,0)),
-    'regisztral' => array('fajl' => 'regisztral', 'szoveg' => '', 'menun' => array(0,0)),
+	'/' => array('fajl' => 'cimlap', 'szoveg' => 'Címlap', 'menun' => array(1,1,1)),
+	'bemutatkozas' => array('fajl' => 'bemutatkozas', 'szoveg' => 'Bemutatkozás', 'menun' => array(1,1,1)),
+    'belepes' => array('fajl' => 'belepes', 'szoveg' => 'Belépés', 'menun' => array(1,0,0)),
+    'admin' => array('fajl' => 'admin', 'szoveg' => 'Admin oldal', 'menun' => array(0,0,1)),
+    'kilepes' => array('fajl' => 'kilepes', 'szoveg' => 'Kilépés', 'menun' => array(0,1,1)),
+    'belep' => array('fajl' => 'belep', 'szoveg' => '', 'menun' => array(0,0,0)),
+    'regisztral' => array('fajl' => 'regisztral', 'szoveg' => '', 'menun' => array(0,0,0)),
+    
 
 );
 
