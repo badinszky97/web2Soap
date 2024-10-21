@@ -23,6 +23,7 @@ $oldalak = array(
     'kilepes' => array('fajl' => 'kilepes', 'szoveg' => 'Kilépés', 'menun' => array(0,1,1)),
     'belep' => array('fajl' => 'belep', 'szoveg' => '', 'menun' => array(0,0,0)),
     'regisztral' => array('fajl' => 'regisztral', 'szoveg' => '', 'menun' => array(0,0,0)),
+    'korlatozasok' => array('fajl' => 'korlatozasok', 'szoveg' => 'Korlátozások', 'menun' => array(0,1,1)),
     
 
 );
