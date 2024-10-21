@@ -35,10 +35,15 @@ class Mobilok {
     function getmodellek($utszam, $telepules){
   
       $eredmeny = array("hibakod" => 0,
-                "uzenet" => "",
-                "markakod" => "",
-                "markanev" => "asd",
-                "modellek" => Array());
+                "utszam" => "",
+                "kezdet" => "",
+                "veg" => "",
+                "telepules" => "",
+                "mettol" => "",
+                "meddig" => "",
+                "megnevezes" => "",
+                "mertek" => "",
+                "sebesseg" => "");
       
       try {
         $dbh = new PDO('mysql:host=localhost;dbname=forgalomSOAP','root', '',
@@ -56,9 +61,27 @@ class Mobilok {
 
         $sth->execute();
         $marka = $sth->fetch(PDO::FETCH_ASSOC);
+        
+        if(isset($marka["utszam"]))
+        {
+          $eredmeny["hibakod"] = 0;
+        }
+        else
+        {
+          $eredmeny["hibakod"] = -1;
+        }
+        
 
         $eredmeny["modellek"] = $marka;
-        $eredmeny["markanev"] = $marka["markanev"];
+        $eredmeny["utszam"] = $marka["utszam"];
+        $eredmeny["kezdet"] = $marka["kezdet"];
+        $eredmeny["veg"] = $marka["veg"];
+        $eredmeny["telepules"] = $marka["telepules"];
+        $eredmeny["mettol"] = $marka["mettol"];
+        $eredmeny["meddig"] = $marka["meddig"];
+        $eredmeny["megnevezes"] = $marka["megnevezes"];
+        $eredmeny["mertek"] = $marka["mertek"];
+        $eredmeny["sebesseg"] = $marka["sebesseg"];
       
       }
       catch (PDOException $e) {
@@ -124,23 +147,47 @@ class Modellek {
   public $hibakod;
 
   /**
-   * @var string
+   * @var int
    */
-  public $uzenet;  
+  public $utszam;  
+
+    /**
+   * @var float
+   */
+  public $kezdet;  
+
+  /**
+   * @var float
+   */
+  public $veg;  
 
   /**
    * @var string
    */
-  public $markakod;
+  public $telepules;  
 
   /**
    * @var string
    */
-  public $markanev;  
+  public $mettol;  
+  /**
+   * @var string
+   */
+  public $meddig;  
 
   /**
-   * @var Modell[]
+   * @var string
    */
-  public $modellek;  
+  public $megnevezes;  
+
+  /**
+   * @var string
+   */
+  public $mertek;  
+
+  /**
+   * @var int
+   */
+  public $sebesseg;  
 }
 ?>
