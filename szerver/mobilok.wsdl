@@ -37,7 +37,8 @@
     <wsdl:part name="getmarkakReturn" type="tns:Markak"/>
   </wsdl:message>
   <wsdl:message name="getmodellekRequest">
-    <wsdl:part name="markakod" type="xsd:string"/>
+    <wsdl:part name="utszam" type="xsd:int"/>
+    <wsdl:part name="telepules" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="getmodellekResponse">
     <wsdl:part name="getmodellekReturn" type="tns:Modellek"/>

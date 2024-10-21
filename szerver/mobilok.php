@@ -28,15 +28,16 @@ class Mobilok {
   }
 
    /**
-    *  @param string $markakod
+    *  @param int $utszam
+    *  @param string $telepules
     *  @return Modellek
     */
-    function getmodellek($utszam){
+    function getmodellek($utszam, $telepules){
   
       $eredmeny = array("hibakod" => 0,
                 "uzenet" => "",
                 "markakod" => "",
-                "markanev" => "",
+                "markanev" => "asd",
                 "modellek" => Array());
       
       try {
@@ -45,13 +46,17 @@ class Mobilok {
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
       
         $eredmeny["markakod"] = $utszam;
-      
-        //$sql = "select markaid, markanev from markak where markakod = :markakod";
-        $sql = "select utszam, kezdet, veg, telepules, mettol, meddig, megnevezes.nev as megnevezes, mertek.nev as mertek, sebesseg from korlatozas, megnevezes, mertek WHERE korlatozas.megnevid=megnevezes.id and korlatozas.mertekid=mertek.id and utszam = :utszambe";
+
+        $sql = "select utszam, kezdet, veg, telepules, mettol, meddig, megnevezes.nev as megnevezes, mertek.nev as mertek, sebesseg from korlatozas, megnevezes, mertek WHERE korlatozas.megnevid=megnevezes.id and korlatozas.mertekid=mertek.id and utszam = :utszambe and telepules = :telepulesbe";
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":utszambe" => $utszam));
+        $sth->bindParam(':utszambe', $utszam);
+
+        $sth->bindParam(':telepulesbe', $telepules);
+
+
+        $sth->execute();
         $marka = $sth->fetch(PDO::FETCH_ASSOC);
-        $markaid = $marka["utszam"];
+
         $eredmeny["modellek"] = $marka;
         $eredmeny["markanev"] = $marka["markanev"];
       
