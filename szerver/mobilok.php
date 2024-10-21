@@ -14,8 +14,7 @@ class Mobilok {
 	  $dbh = new PDO('mysql:host=localhost;dbname=forgalomSOAP','root', '',
 					array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 	  $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
-  
-	  $sql = "select utszam, telepules from korlatozas";
+	  $sql = "select utszam, kezdet, veg, telepules, mettol, meddig, megnevezes.nev as megnevezes, mertek.nev as mertek, sebesseg from korlatozas, megnevezes, mertek WHERE korlatozas.megnevid=megnevezes.id and korlatozas.mertekid=mertek.id";
 	  $sth = $dbh->prepare($sql);
 	  $sth->execute(array());
 	  $eredmeny['markak'] = $sth->fetchAll(PDO::FETCH_ASSOC);
