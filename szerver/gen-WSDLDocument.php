@@ -2,7 +2,7 @@
 	//error_reporting(0);
 	require 'mobilok.php';
 	require 'WSDLDocument/WSDLDocument.php';
-	$wsdl = new WSDLDocument('Mobilok', "http://localhost/web2/szerver/szerver.php", "http://localhost/web2/szerver/");
+	$wsdl = new WSDLDocument('Lezarasok', "http://localhost/web2/szerver/szerver.php", "http://localhost/web2/szerver/");
 	$wsdl->formatOutput = true;
 	$wsdlfile = $wsdl->saveXML();
 	echo $wsdlfile;

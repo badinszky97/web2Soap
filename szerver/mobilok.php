@@ -1,8 +1,8 @@
 <?php
-class Mobilok {
+class Lezarasok {
   
   /**
-    *  @return Markak
+    *  @return Korlatozas
     */
   public function getmarkak(){
   
@@ -29,7 +29,7 @@ class Mobilok {
 }
 
 
-class Marka {
+class Korlatozas {
   /**
    * @var string
    */
@@ -41,7 +41,7 @@ class Marka {
   public $markanev;  
 }
 
-class Markak {
+class Korlatozasok {
   /**
    * @var integer
    */
@@ -53,7 +53,7 @@ class Markak {
   public $uzenet;  
 
   /**
-   * @var Marka[]
+   * @var Korlatozas[]
    */
   public $markak;  
 }
