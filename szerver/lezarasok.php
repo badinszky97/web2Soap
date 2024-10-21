@@ -2,13 +2,13 @@
 class Lezarasok {
   
   /**
-    *  @return Markak
+    *  @return Korlatozasok
     */
-  public function getmarkak(){
+public function getlezarasok(){
   
 	$eredmeny = array("hibakod" => 0,
 					  "uzenet" => "",
-					  "markak" => Array());
+					  "lezarasok" => Array());
 	
 	try {
 	  $dbh = new PDO('mysql:host=localhost;dbname=forgalomSOAP','root', '',
@@ -17,7 +17,7 @@ class Lezarasok {
 	  $sql = "select utszam, kezdet, veg, telepules, mettol, meddig, megnevezes.nev as megnevezes, mertek.nev as mertek, sebesseg from korlatozas, megnevezes, mertek WHERE korlatozas.megnevid=megnevezes.id and korlatozas.mertekid=mertek.id";
 	  $sth = $dbh->prepare($sql);
 	  $sth->execute(array());
-	  $eredmeny['markak'] = $sth->fetchAll(PDO::FETCH_ASSOC);
+	  $eredmeny['lezarasok'] = $sth->fetchAll(PDO::FETCH_ASSOC);
 	}
 	catch (PDOException $e) {
 	  $eredmeny["hibakod"] = 1;
@@ -30,9 +30,9 @@ class Lezarasok {
    /**
     *  @param int $utszam
     *  @param string $telepules
-    *  @return Modellek
+    *  @return SzurtKorlatozas
     */
-    function getmodellek($utszam, $telepules){
+    function getlezaras($utszam, $telepules){
   
       $eredmeny = array("hibakod" => 0,
                 "utszam" => "",
@@ -49,8 +49,6 @@ class Lezarasok {
         $dbh = new PDO('mysql:host=localhost;dbname=forgalomSOAP','root', '',
               array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
-      
-        $eredmeny["markakod"] = $utszam;
 
         $sql = "select utszam, kezdet, veg, telepules, mettol, meddig, megnevezes.nev as megnevezes, mertek.nev as mertek, sebesseg from korlatozas, megnevezes, mertek WHERE korlatozas.megnevid=megnevezes.id and korlatozas.mertekid=mertek.id and utszam = :utszambe and telepules = :telepulesbe";
         $sth = $dbh->prepare($sql);
@@ -96,19 +94,15 @@ class Lezarasok {
 }
 
 
-class Marka {
+class Korlatozas {
   /**
    * @var string
    */
-  public $markakod;
+  public $korlatozas;
 
-  /**
-   * @var string
-   */
-  public $markanev;  
 }
 
-class Markak {
+class Korlatozasok {
   /**
    * @var integer
    */
@@ -120,27 +114,13 @@ class Markak {
   public $uzenet;  
 
   /**
-   * @var Marka[]
+   * @var Korlatozas[]
    */
-  public $markak;  
+  public $lezarasok;  
 }
 
 
-
-
-class Modell {
-  /**
-   * @var string
-   */
-  public $modellkod;
-
-  /**
-   * @var string
-   */
-  public $modellnev;  
-}
-
-class Modellek {
+class SzurtKorlatozas {
   /**
    * @var integer
    */

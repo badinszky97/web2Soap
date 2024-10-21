@@ -2,20 +2,19 @@
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/web2/szerver/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/web2/szerver/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://localhost/web2/szerver/">
-      <xsd:complexType name="Markak">
+      <xsd:complexType name="Korlatozasok">
         <xsd:all>
           <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
           <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-          <xsd:element name="markak" type="tns:MarkaArray" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="lezarasok" type="tns:KorlatozasArray" minOccurs="0" maxOccurs="1"/>
         </xsd:all>
       </xsd:complexType>
-      <xsd:complexType name="Marka">
+      <xsd:complexType name="Korlatozas">
         <xsd:all>
-          <xsd:element name="markakod" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-          <xsd:element name="markanev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="korlatozas" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:all>
       </xsd:complexType>
-      <xsd:complexType name="Modellek">
+      <xsd:complexType name="SzurtKorlatozas">
         <xsd:all>
           <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
           <xsd:element name="utszam" type="xsd:int" minOccurs="0" maxOccurs="1"/>
@@ -31,33 +30,33 @@
       </xsd:complexType>
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="getmarkakRequest"/>
-  <wsdl:message name="getmarkakResponse">
-    <wsdl:part name="getmarkakReturn" type="tns:Markak"/>
+  <wsdl:message name="getlezarasokRequest"/>
+  <wsdl:message name="getlezarasokResponse">
+    <wsdl:part name="getlezarasokReturn" type="tns:Korlatozasok"/>
   </wsdl:message>
-  <wsdl:message name="getmodellekRequest">
+  <wsdl:message name="getlezarasRequest">
     <wsdl:part name="utszam" type="xsd:int"/>
     <wsdl:part name="telepules" type="xsd:string"/>
   </wsdl:message>
-  <wsdl:message name="getmodellekResponse">
-    <wsdl:part name="getmodellekReturn" type="tns:Modellek"/>
+  <wsdl:message name="getlezarasResponse">
+    <wsdl:part name="getlezarasReturn" type="tns:SzurtKorlatozas"/>
   </wsdl:message>
   <wsdl:portType name="LezarasokPortType">
-    <wsdl:operation name="getmarkak">
+    <wsdl:operation name="getlezarasok">
       <wsdl:documentation/>
-      <wsdl:input message="tns:getmarkakRequest"/>
-      <wsdl:output message="tns:getmarkakResponse"/>
+      <wsdl:input message="tns:getlezarasokRequest"/>
+      <wsdl:output message="tns:getlezarasokResponse"/>
     </wsdl:operation>
-    <wsdl:operation name="getmodellek">
+    <wsdl:operation name="getlezaras">
       <wsdl:documentation/>
-      <wsdl:input message="tns:getmodellekRequest"/>
-      <wsdl:output message="tns:getmodellekResponse"/>
+      <wsdl:input message="tns:getlezarasRequest"/>
+      <wsdl:output message="tns:getlezarasResponse"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="LezarasokBinding" type="tns:LezarasokPortType">
     <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="getmarkak">
-      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/szerver/szerver.php?method=getmarkak" style="rpc"/>
+    <wsdl:operation name="getlezarasok">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/szerver/szerver.php?method=getlezarasok" style="rpc"/>
       <wsdl:input>
         <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
@@ -65,8 +64,8 @@
         <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getmodellek">
-      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/szerver/szerver.php?method=getmodellek" style="rpc"/>
+    <wsdl:operation name="getlezaras">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/web2/szerver/szerver.php?method=getlezaras" style="rpc"/>
       <wsdl:input>
         <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
