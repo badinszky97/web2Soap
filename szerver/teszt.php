@@ -16,6 +16,7 @@
   $client = new SoapClient('http://localhost/web2/szerver/mobilok.wsdl',$options);
   
   $markak = $client->getmarkak();
+  $markak = $client->getmodellek(1);
   echo "<pre>";
   print_r($markak);
   echo "</pre>";
