@@ -1,5 +1,5 @@
 <?php
-class Mobilok {
+class Lezarasok {
   
   /**
     *  @return Markak
