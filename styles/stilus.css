@@ -93,3 +93,15 @@ kep div{width: 100%; }
 #felsologo{
     width:130px;
 }
+
+#keresesform{
+    display:block;
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    border:5px;
+    border-style: solid;
+    border-color:blue;
+    padding:50px;
+    margin-bottom:50px;
+}
