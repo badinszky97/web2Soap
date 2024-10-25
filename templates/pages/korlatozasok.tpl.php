@@ -2,8 +2,6 @@
 
 <fieldset id="keresesform">
 <legend>Keresés:</legend>
-
-
 <table>
 <form action=# method=post>
   <tr>
@@ -22,8 +20,8 @@
 
 </fieldset>
 
-<table>
-    <tr>
+<table id=soaptablazat>
+    <tr class="table-light">
         <td>Útszám</td>
         <td>Kezdet</td>
         <td>Vég</td>
