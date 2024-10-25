@@ -51,20 +51,61 @@
 
 <?php
 
+
+$url = "http://localhost/web2/szerver/restfulszerver.php";
+
 if(isset($_POST['hozzaadgomb']))
 {
-  echo "hozzadas";
-}if(isset($_POST['modositgomb']))
+  $post = [
+    'megnevezes' => $_POST['megnevezesnev'],
+  ];
+
+  $ch = curl_init(); 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+  $result = curl_exec($ch);
+  echo $result; 
+}
+
+
+
+
+if(isset($_POST['modositgomb']))
 {
-  echo "modositas";
+  $post = [
+    'id' => $_POST['id'],
+    'megnevezes' => $_POST['megnevezesnev'],
+  ];
+
+  $data = Array("id" => $_POST["id"], "megnevezesnev" => $_POST["megnevezesnev"]);
+
+  $ch = curl_init(); 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  $result = curl_exec($ch);
+  echo $result; 
 }
 if(isset($_POST['torlesgomb']))
 {
-  echo "torles";
+  $post = [
+    'id' => $_POST['id'],
+  ];
+
+  $data = Array("id" => $_POST["id"]);
+
+  $ch = curl_init(); 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  $result = curl_exec($ch);
+  echo $result; 
 }
 
-
-$url = "http://localhost/web2/szerver/restfulszerver.php";
  
 $ch = curl_init(); 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

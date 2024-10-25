@@ -11,17 +11,36 @@ try {
 
     switch($_SERVER['REQUEST_METHOD']) {
         case "GET":
-        $sql = "SELECT * FROM megnevezes";
-        $sth = $dbh->query($sql);
-        $eredmeny .= "<table style=\"border-collapse: collapse;\"><tr><th>ID</th><th>Megnevezés</th></tr>";
-        while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
-            $eredmeny .= "<tr>";
-            foreach($row as $column)
-            $eredmeny .= "<td style=\"border: 1px solid black; padding: 3px;\">".$column."</td>";
-            $eredmeny .= "</tr>";
-        }
-        $eredmeny .= "</table>";
-    break;
+            $sql = "SELECT * FROM megnevezes";
+            $sth = $dbh->query($sql);
+            $eredmeny .= "<table style=\"border-collapse: collapse;\"><tr><th>ID</th><th>Megnevezés</th></tr>";
+            while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+                $eredmeny .= "<tr>";
+                foreach($row as $column)
+                $eredmeny .= "<td style=\"border: 1px solid black; padding: 3px;\">".$column."</td>";
+                $eredmeny .= "</tr>";
+            }
+            $eredmeny .= "</table>";
+            break;
+        case "POST":
+            $sql = "INSERT INTO megnevezes (nev) VALUES ('" . $_POST['megnevezes'] ."')";
+            $sth = $dbh->query($sql);
+            $eredmeny = $sth;
+            break;
+        case "PUT":
+            $incoming = file_get_contents("php://input");
+            parse_str($incoming, $data);
+            $sql = "UPDATE megnevezes SET nev =\"" . $data['megnevezesnev'] ."\" WHERE id=". $data['id'];
+            $sth = $dbh->query($sql);
+            $eredmeny = $sth;
+            break;
+        case "DELETE":
+                $incoming = file_get_contents("php://input");
+                parse_str($incoming, $data);
+                $sql = "DELETE FROM megnevezes WHERE id=". $data['id'];
+                $sth = $dbh->query($sql);
+                $eredmeny = $sth;
+                break;
     }
 }
 catch (PDOException $e) {
