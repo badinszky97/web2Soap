@@ -23,20 +23,60 @@
 			
 		</div>
 	
-    
-       
             <nav>
                 <ul>
-					<?php foreach ($oldalak as $url => $oldal) { ?>
-						<?php if(! isset($_SESSION['login']) && $oldal['menun'][0] || isset($_SESSION['login']) && $oldal['menun'][1] && $_SESSION['admin'] == 0 ||  isset($_SESSION['login']) && $oldal['menun'][2] && $_SESSION['admin'] == 1 ) { ?>
-							<li<?= (($oldal == $keres) ? ' class="active"' : '') ?>>
-							<a href="<?= ($url == '/') ? '.' : ('?oldal=' . $url) ?>">
-							<?= $oldal['szoveg'] ?></a>
-							</li>
-						<?php } ?>
-					<?php } ?>
-                </ul>
-            </nav>
+			<?php
+
+			$dbh = new PDO('mysql:host='.$dbhostname.';dbname='.$dbname, $dbuser, $dbjelszo,
+									array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+					$dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+
+					$sql = "SELECT * FROM menu WHERE vendeg=1";
+					/*if(!isset($_SESSION['login']))
+					{
+						// vendeg
+						$sql = "SELECT * FROM menu WHERE vendeg=1"
+					}*/
+					if(isset($_SESSION['login']) && $_SESSION['admin']=0)
+					{
+						// vendeg
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1";
+					}
+					if(isset($_SESSION['login']) && $_SESSION['admin']=1)
+					{
+						// vendeg
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1";
+					}
+
+					
+
+
+
+					$stmt = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+					$stmt->execute();
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+
+							echo "<li>";
+							if($row['url'] == "/")
+							{
+								$row['url'] = ".";
+							}
+							else
+							{
+								$row['url'] = "?oldal=" . $row['url'];
+							}
+							echo "<a href=" . $row['url'] . ">" . $row['szoveg'] . "</a>";
+							echo "</li>";
+						
+
+					}
+
+				
+			
+			
+			?>
+			                </ul>
+							</nav>
 		</header>				
 	
 	<div id="wrapper">
