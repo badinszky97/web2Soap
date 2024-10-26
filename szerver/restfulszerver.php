@@ -2,6 +2,7 @@
 // A szkript ereménye az $eredmeny nevű string.
 // lásd végén: echo $eredmeny;
 // mind a 4 esetben (GET, POST, PUT, DELETE) ezt készíti el
+$sql = "";
 $eredmeny = "";
 try {
 
@@ -39,12 +40,13 @@ try {
                 parse_str($incoming, $data);
                 $sql = "DELETE FROM megnevezes WHERE id=". $data['id'];
                 $sth = $dbh->query($sql);
-                $eredmeny = $sth;
+                $kifele = $data;
+                $eredmeny = "HAHAHAH" . $sth;
                 break;
     }
 }
 catch (PDOException $e) {
-$eredmeny = $e->getMessage();
+$eredmeny = $sql . $e->getMessage();
 }
 echo $eredmeny;
 ?>
