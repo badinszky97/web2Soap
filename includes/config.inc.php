@@ -23,6 +23,9 @@ $oldalak = array(
     'kilepes' => array('fajl' => 'kilepes', 'szoveg' => 'Kilépés', 'menun' => array(0,1,1)),
     'belep' => array('fajl' => 'belep', 'szoveg' => '', 'menun' => array(0,0,0)),
     'regisztral' => array('fajl' => 'regisztral', 'szoveg' => '', 'menun' => array(0,0,0)),
+    'korlatozasok' => array('fajl' => 'korlatozasok', 'szoveg' => 'SOAP szerver - adatbázis', 'menun' => array(0,1,1)),
+    'restfulkliens' => array('fajl' => 'restfulkliens', 'szoveg' => 'Restful Kliens', 'menun' => array(0,1,1)),
+    'mnbSoap' => array('fajl' => 'mnbsoap', 'szoveg' => 'MNB Soap', 'menun' => array(0,1,1)),
     
 
 );
@@ -37,5 +40,7 @@ $MAXMERET = 500*1024;
 
 
 include ("dbconnect.php");
+
+
 
 ?>

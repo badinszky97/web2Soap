@@ -1,6 +1,6 @@
 <?php
-	require("mobilok.php");
-	$server = new SoapServer("mobilok.wsdl");
+	require("lezarasok.php");
+	$server = new SoapServer("lezarasok.wsdl");
 	$server->setClass('Lezarasok');
 	$server->handle();
 ?>
