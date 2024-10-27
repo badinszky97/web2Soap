@@ -31,26 +31,17 @@
 									array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 					$dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
-					$sql = "SELECT * FROM menu WHERE vendeg=1";
-					/*if(!isset($_SESSION['login']))
-					{
-						// vendeg
-						$sql = "SELECT * FROM menu WHERE vendeg=1"
-					}*/
+					$sql = "SELECT * FROM menu WHERE vendeg=1 AND parent=\"cimlap\"";
 					if(isset($_SESSION['login']) && $_SESSION['admin']=0)
 					{
-						// vendeg
-						$sql = "SELECT * FROM menu WHERE felhasznalo=1";
+						// felhasznalo
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1 AND parent=\"cimlap\"";
 					}
 					if(isset($_SESSION['login']) && $_SESSION['admin']=1)
 					{
-						// vendeg
-						$sql = "SELECT * FROM menu WHERE felhasznalo=1";
+						// admin
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1 AND parent=\"cimlap\"";
 					}
-
-					
-
-
 
 					$stmt = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 					$stmt->execute();
@@ -67,27 +58,79 @@
 							}
 							echo "<a href=" . $row['url'] . ">" . $row['szoveg'] . "</a>";
 							echo "</li>";
-						
-
 					}
-
-				
-			
-			
 			?>
 			                </ul>
 							</nav>
+
+<!-- almenu -->
+							<nav>
+                <ul>
+			<?php
+
+			$dbh = new PDO('mysql:host='.$dbhostname.';dbname='.$dbname, $dbuser, $dbjelszo,
+									array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+					$dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+
+					$sql = "SELECT * FROM menu WHERE vendeg=1 AND parent=\"".$keres['fajl']."\" AND parent!=\"cimlap\"";
+					if(isset($_SESSION['login']) && $_SESSION['admin']=0)
+					{
+						// felhasznalo
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1 AND parent=\"".$keres['fajl']."\" AND parent!=\"cimlap\"";
+					}
+					if(isset($_SESSION['login']) && $_SESSION['admin']=1)
+					{
+						// admin
+						$sql = "SELECT * FROM menu WHERE felhasznalo=1 AND parent=\"".$keres['fajl']."\" AND parent!=\"cimlap\"";
+					}
+
+					$stmt = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+					$stmt->execute();
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+
+							echo "<li>";
+							if($row['url'] == "/")
+							{
+								$row['url'] = ".";
+							}
+							else
+							{
+								$row['url'] = "?oldal=" . $row['url'];
+							}
+							echo "<a href=" . $row['url'] . ">" . $row['szoveg'] . "</a>";
+							echo "</li>";
+					}
+			?>
+			                </ul>
+							</nav>
+
+
+
+
+
+
+
 		</header>				
 	
 	<div id="wrapper">
         <div id="content">
-            <?php include("./templates/pages/{$keres['fajl']}.tpl.php"); ?>
+			<?php
+			$fajlnev = "";
+			if($keres['fajl'] == "")
+			{
+				$fajlnev = "cimlap";
+			}
+			else
+			{
+				$fajlnev = $keres['fajl'];
+			}
+			?>
+            <?php include("./templates/pages/{$fajlnev}.tpl.php"); ?>
         </div>
     </div>
     <footer>  <?php if(isset($lablec['ceg'])) { ?><?= $lablec['ceg']; ?><?php } ?> &nbsp;
         <?php if(isset($lablec['copyright'])) { ?>&copy;&nbsp;<?= $lablec['copyright'] ?> <?php } ?>
 		<div id="ajax_div"></div>
-      
     </footer>
 </body>
 </html>
